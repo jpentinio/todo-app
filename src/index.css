@@ -21,8 +21,8 @@ body {
 }
 
 .light {
-  background-color: hsl(0, 0%, 98%);
-  color: hsl(236, 9%, 61%);
+  background-color: #fafafa;
+  color: hsl(235, 24%, 19%);
 }
 
 .dark {

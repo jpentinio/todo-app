@@ -1,60 +1,110 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import TodoItem from "../TodoItem/TodoItem";
 import { useStore } from "../../store";
+import { ThemeContext } from "../../context/ThemeContext";
 
 const TodoForm = () => {
-  const todos = useStore((store) => store.filteredTodos);
+  const { mode } = useContext(ThemeContext);
+  const todos = useStore((store) => store.todos);
+  const setTodos = useStore((store) => store.setTodos);
   const setCompleted = useStore((store) => store.setCompleted);
   const deleteTodo = useStore((store) => store.deleteTodo);
   const filter = useStore((store) => store.filter);
   const setFilter = useStore((store) => store.setFilter);
   const clearCompleted = useStore((store) => store.clearCompleted);
+  const [items, setItems] = useState(todos);
+
+  const dragItem = useRef(null);
+  const dragOverItem = useRef(null);
+
+  const handleSort = () => {
+    let _todos = [...todos];
+
+    const draggedItemContent = _todos.splice(dragItem.current, 1)[0];
+
+    _todos.splice(dragOverItem.current, 0, draggedItemContent);
+
+    dragItem.current = null;
+    dragOverItem.current = null;
+
+    setTodos(_todos);
+  };
+
+  useEffect(() => {
+    if (filter === "all") {
+      setItems(todos);
+    }
+    if (filter === "active") {
+      setItems(todos.filter((todo) => !todo.isCompleted));
+    }
+    if (filter === "completed") {
+      setItems(todos.filter((todo) => todo.isCompleted));
+    }
+  }, [filter, todos]);
 
   return (
-    <div className="mt-7 bg-dark-blue flex flex-col w-full rounded-lg drop-shadow-2xl">
-      {todos.length > 0
-        ? todos.map((item) => (
-            <TodoItem
-              key={item.id}
-              item={item}
-              handleCompleted={(id) => setCompleted(id)}
-              handleDelete={(id) => deleteTodo(id)}
-            />
-          ))
-        : ""}
+    <div
+      className={`mt-7 ${
+        mode === "dark" ? "bg-dark-blue" : "bg-white"
+      } flex flex-col w-full rounded-lg drop-shadow-2xl border-dashed border-4 border-transparent`}
+    >
+      {items.length > 0 ? (
+        items.map((item, index) => (
+          <TodoItem
+            key={item.id}
+            item={item}
+            index={index}
+            handleCompleted={(id) => setCompleted(id)}
+            handleDelete={(id) => deleteTodo(id)}
+            onDragStart={() => (dragItem.current = index)}
+            onDragEnter={() => (dragOverItem.current = index)}
+            onDragEnd={handleSort}
+          />
+        ))
+      ) : (
+        <div className="p-6 text-center">No items</div>
+      )}
       <div className="p-4 flex items-center justify-between text-dark-grayish-blue">
-        <div>
-          {todos.filter((todo) => !todo.isCompleted).length} item(s) left
-        </div>
+        <div>{items.length} item(s) left</div>
         <div className="flex justify-between gap-x-5">
           <div
             onClick={() => setFilter("all")}
-            className={`transition cursor-pointer hover:text-light-grayish-blue font-semibold ${
-              filter === "all" && "text-active-blue"
-            }`}
+            className={`transition cursor-pointer ${
+              mode === "dark"
+                ? "hover:text-light-grayish-blue"
+                : "hover:text-dark-blue"
+            } font-semibold ${filter === "all" && "text-active-blue"}`}
           >
             All
           </div>
           <div
             onClick={() => setFilter("active")}
-            className={`transition cursor-pointer hover:text-light-grayish-blue font-semibold ${
-              filter === "active" && "text-active-blue"
-            }`}
+            className={`transition cursor-pointer ${
+              mode === "dark"
+                ? "hover:text-light-grayish-blue"
+                : "hover:text-dark-blue"
+            } font-semibold ${filter === "active" && "text-active-blue"}`}
           >
             Active
           </div>
           <div
             onClick={() => setFilter("completed")}
-            className={`transition cursor-pointer hover:text-light-grayish-blue font-semibold ${
-              filter === "completed" && "text-active-blue"
-            }`}
+            className={`transition cursor-pointer ${
+              mode === "dark"
+                ? "hover:text-light-grayish-blue"
+                : "hover:text-dark-blue"
+            } font-semibold ${filter === "completed" && "text-active-blue"}`}
           >
             Completed
           </div>
         </div>
         <div
           onClick={clearCompleted}
-          className="transition cursor-pointer hover:text-light-grayish-blue"
+          className={`transition cursor-pointer ${
+            mode === "dark"
+              ? "hover:text-light-grayish-blue"
+              : "hover:text-dark-grayish-blue"
+          }`}
         >
           Clear Completed
         </div>

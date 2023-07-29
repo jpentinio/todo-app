@@ -1,19 +1,33 @@
-.uncheck {
+.uncheckDark {
     border: 2px solid hsl(237, 14%, 26%);
     padding: 12px;
     border-radius: 50px;
-    transition: ease 0.3s;
     cursor: pointer;
 }
 
-.uncheck:hover {
+.uncheckDark:hover {
     background: linear-gradient(hsl(235, 24%, 19%),hsl(235, 24%, 19%)) padding-box, linear-gradient(145deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
     border: 2px solid transparent;
     border-radius: 50px;
     padding: 12px;
 }
 
+.uncheckLight {
+    border: 2px solid hsl(233, 11%, 84%);
+    padding: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.uncheckLight:hover {
+    background: linear-gradient(#fff,#fff) padding-box, linear-gradient(145deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+    border: 2px solid transparent;
+    border-radius: 50px;
+    padding: 12px;
+}
+
 .checked{
+    cursor: pointer;
     width: 27px;
     height: 27px;
     display: flex;

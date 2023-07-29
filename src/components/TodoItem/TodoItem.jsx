@@ -1,20 +1,42 @@
-import React from "react";
+import React, { useContext } from "react";
 import iconCross from "../../assets/icon-cross.svg";
 import iconCheck from "../../assets/icon-check.svg";
 import styles from "./todoItem.module.css";
+import { ThemeContext } from "../../context/ThemeContext";
 
-const TodoItem = ({ item, handleCompleted, handleDelete }) => {
+const TodoItem = ({
+  item,
+  index,
+  handleCompleted,
+  handleDelete,
+  onDragStart,
+  onDragEnter,
+  onDragEnd,
+}) => {
+  const { mode } = useContext(ThemeContext);
   return (
-    <div className="cursor-grab w-full flex items-center justify-between border-b border-dark-grayish-blue p-6 text-xl font-light">
+    <div
+      draggable
+      onDragStart={(e) => onDragStart(e, index)}
+      onDragEnter={(e) => onDragEnter(e, index)}
+      onDragEnd={onDragEnd}
+      onDragOver={(e) => e.preventDefault()}
+      className="group cursor-grab w-full flex items-center justify-between border-b border-dark-grayish-blue p-6 text-xl"
+    >
       <div className="flex items-center">
         {item.isCompleted ? (
-          <div className={styles.checked}>
+          <div
+            onClick={() => handleCompleted(item.id)}
+            className={styles.checked}
+          >
             <img src={iconCheck} alt="" width={15} height={15} />
           </div>
         ) : (
           <div
             onClick={() => handleCompleted(item.id)}
-            className={styles.uncheck}
+            className={
+              mode === "dark" ? styles.uncheckDark : styles.uncheckLight
+            }
           />
         )}
 
@@ -26,7 +48,10 @@ const TodoItem = ({ item, handleCompleted, handleDelete }) => {
           {item.text}
         </div>
       </div>
-      <div onClick={() => handleDelete(item.id)} className="cursor-pointer">
+      <div
+        onClick={() => handleDelete(item.id)}
+        className="cursor-pointer hidden group-hover:block"
+      >
         <img src={iconCross} alt="" width={20} height={20} />
       </div>
     </div>

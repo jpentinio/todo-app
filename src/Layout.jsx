@@ -1,16 +1,19 @@
-import React from "react";
-import { ThemeProvider } from "./context/ThemeContext";
+import React, { useContext } from "react";
+import { ThemeContext, ThemeProvider } from "./context/ThemeContext";
 
 const Layout = ({ children }) => {
+  const { mode } = useContext(ThemeContext);
   return (
-    <ThemeProvider>
-      <div className="min-h-screen">
-        <div className="bg-desktop-dark bg-cover h-80 w-screen"></div>
-        <div className="flex justify-center items-center absolute inset-x-0 top-24">
-          {children}
-        </div>
+    <div className="min-h-screen">
+      <div
+        className={`${
+          mode === "dark" ? "bg-desktop-dark" : "bg-desktop-light"
+        } bg-cover h-80 w-screen transition duration-1000 ease-in-out`}
+      ></div>
+      <div className="flex justify-center items-center absolute inset-x-0 top-24">
+        {children}
       </div>
-    </ThemeProvider>
+    </div>
   );
 };
 

@@ -6,6 +6,7 @@ export default {
     extend: {
       backgroundImage: {
         "desktop-dark": "url('./src/assets/bg-desktop-dark.jpg')",
+        "desktop-light": "url('./src/assets/bg-desktop-light.jpg')",
       },
       colors: {
         "dark-blue": "hsl(235, 24%, 19%)",
