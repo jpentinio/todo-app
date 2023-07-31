@@ -17,6 +17,7 @@ const TodoForm = () => {
   const dragItem = useRef(null);
   const dragOverItem = useRef(null);
 
+  //DRAG AND DROP FUNCTION
   const handleSort = () => {
     let _todos = [...todos];
 
@@ -30,6 +31,7 @@ const TodoForm = () => {
     setTodos(_todos);
   };
 
+  //SET FILTER TO ALL,ACTIVE,COMPLETED
   useEffect(() => {
     if (filter === "all") {
       setItems(todos);

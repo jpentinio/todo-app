@@ -12,7 +12,7 @@ const setIsCompleted = (todos, id) => {
 };
 
 const store = (set) => ({
-  todos: [],
+  todos: [], //LIST of todos
   setTodos: (todos) => set((store) => ({ todos })),
   filter: "all",
   setFilter: (filter) => set(() => ({ filter })),
