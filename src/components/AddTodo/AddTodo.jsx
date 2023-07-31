@@ -36,6 +36,7 @@ const AddTodo = () => {
       <input
         type="text"
         value={text}
+        placeholder="Create a new todo..."
         className="bg-transparent w-full ml-5 focus:outline-none md:text-xl text-sm"
         onChange={handleChange}
         onKeyDown={handleSubmit}
