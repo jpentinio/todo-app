@@ -45,7 +45,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [todo-app]([https://your-live-site-url.com](https://todo-app-beta-seven-99.vercel.app/))
+- Live Site URL: [todo-app](https://your-live-site-url.com](https://todo-app-beta-seven-99.vercel.app/)
 
 ## My process
 
