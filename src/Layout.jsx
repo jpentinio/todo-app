@@ -7,7 +7,9 @@ const Layout = ({ children }) => {
     <div className="min-h-screen">
       <div
         className={`${
-          mode === "dark" ? "bg-desktop-dark" : "bg-desktop-light"
+          mode === "dark"
+            ? "bg-mobile-dark md:bg-desktop-dark"
+            : "bg-mobile-light md:bg-desktop-light"
         } bg-cover h-80 w-screen transition duration-1000 ease-in-out`}
       ></div>
       <div className="flex justify-center items-center absolute inset-x-0 top-24">

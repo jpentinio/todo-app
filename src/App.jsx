@@ -12,7 +12,7 @@ function App() {
   return (
     <ThemeProvider>
       <Layout>
-        <div className="w-1/3">
+        <div className="w-10/12 md:w-2/3 lg:w-1/3">
           <Navbar />
           <AddTodo />
           <TodoForm />

@@ -22,19 +22,21 @@ const AddTodo = () => {
 
   return (
     <div
-      className={`flex items-center p-6 w-full ${
-        mode === "dark" ? "bg-dark-blue" : "bg-white"
+      className={`flex items-center md:p-6 p-4 w-full ${
+        mode === "dark" ? "bg-dark-blue " : "bg-white"
       } mt-8 rounded-lg drop-shadow-2xl`}
     >
       <div
-        className={`border-2 border-${
-          mode === "dark" ? "very-dark-grayish-blue" : "light-grayis-blue"
+        className={`border-2 ${
+          mode === "dark"
+            ? "border-very-dark-grayish-blue"
+            : "border-light-grayish-blue"
         } rounded-full p-3`}
       />
       <input
         type="text"
         value={text}
-        className="bg-transparent w-full ml-5 focus:outline-none text-xl"
+        className="bg-transparent w-full ml-5 focus:outline-none md:text-xl text-sm"
         onChange={handleChange}
         onKeyDown={handleSubmit}
       />

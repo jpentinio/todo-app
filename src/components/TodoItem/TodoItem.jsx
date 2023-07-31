@@ -21,7 +21,11 @@ const TodoItem = ({
       onDragEnter={(e) => onDragEnter(e, index)}
       onDragEnd={onDragEnd}
       onDragOver={(e) => e.preventDefault()}
-      className="group cursor-grab w-full flex items-center justify-between border-b border-dark-grayish-blue p-6 text-xl"
+      className={`transition ease-in-out group cursor-grab w-full flex items-center justify-between border-b ${
+        mode === "dark"
+          ? "border-very-dark-grayish-blue"
+          : "border-light-grayish-blue"
+      } md:p-6 p-4 text-xl`}
     >
       <div className="flex items-center">
         {item.isCompleted ? (
@@ -41,8 +45,8 @@ const TodoItem = ({
         )}
 
         <div
-          className={`ml-5 ${
-            item.isCompleted && "line-through text-dark-grayish-blue"
+          className={`ml-5 md:text-xl text-sm ${
+            item.isCompleted ? "line-through opacity-40" : "opacity-100"
           }`}
         >
           {item.text}

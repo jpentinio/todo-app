@@ -7,14 +7,22 @@ const Navbar = () => {
   const { toggle, mode } = useContext(ThemeContext);
   return (
     <div className="flex justify-between items-center">
-      <div className="text-5xl text-white font-semibold tracking-widest">
+      <div className="md:text-5xl text-4xl text-white font-semibold tracking-widest">
         TODO
       </div>
       <div onClick={toggle}>
         {mode === "dark" ? (
-          <img src={Sun} alt="" className="h-8 w-8" />
+          <img
+            src={Sun}
+            alt=""
+            className="h-8 w-8 transition ease-in-out active:opacity-40"
+          />
         ) : (
-          <img src={Moon} alt="" className="h-8 w-8" />
+          <img
+            src={Moon}
+            alt=""
+            className="h-8 w-8 transition ease-in-out active:opacity-40"
+          />
         )}
       </div>
     </div>
