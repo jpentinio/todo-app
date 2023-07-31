@@ -5,10 +5,10 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "desktop-dark": "url('./src/assets/bg-desktop-dark.jpg')",
-        "desktop-light": "url('./src/assets/bg-desktop-light.jpg')",
-        "mobile-dark": "url('./src/assets/bg-mobile-dark.jpg')",
-        "mobile-light": "url('./src/assets/bg-mobile-light.jpg')",
+        "desktop-dark": "url('/src/assets/bg-desktop-dark.jpg')",
+        "desktop-light": "url('/src/assets/bg-desktop-light.jpg')",
+        "mobile-dark": "url('/src/assets/bg-mobile-dark.jpg')",
+        "mobile-light": "url('/src/assets/bg-mobile-light.jpg')",
       },
       colors: {
         "dark-blue": "hsl(235, 24%, 19%)",
